@@ -13,13 +13,18 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('taawun_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->string('nama', 50);
+      			$table->string('email', 150)->unique();
+      			$table->string('password', 60);
+      			$table->integer('role_id')->unsigned();
+      			$table->integer('seen')->unsigned();
+      			$table->boolean('valid')->default(false);
+      			$table->boolean('confirmed')->default(false);
+      			$table->string('confirmation_code')->nullable();
             $table->rememberToken();
-            $table->timestamps();
+      			$table->timestamps();
         });
     }
 
