@@ -9,6 +9,26 @@
 @endsection
 
 @section('content')
+
+
+@if(Session::has('berhasil'))
+<script>
+  window.setTimeout(function() {
+    $(".alert-success").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+  }, 3000);
+</script>
+<div class="row">
+  <div class="alert alert-success alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+    </button>
+    <strong>Berhasil!</strong> {{ Session::get('berhasil') }}
+  </div>
+</div>
+@endif
+
+
 <div class="page-title">
   <div class="title_left">
     <h3> Daftar BMT <small> </small> </h3>
@@ -44,21 +64,20 @@
             </tr>
           </thead>
           <tbody>
-          @for ($i=0; $i < 15; $i++)
+          @foreach ($getBMT as $key)
           <tr>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>Ubah</td>
+            <td>{{ $key->NIK_BMT }}</td>
+            <td>{{ $key->NAMA_BMT }}</td>
+            <td>{{ $key->ALAMAT_BMT }}</td>
+            <td>{{ $key->NO_ANGGOTA_BMT }}</td>
+            <td>{{ $key->MPD }}</td>
+            <td>{{ $key->MPW }}</td>
+            <td>{{ $key->NO_TELPON }}</td>
+            <td>{{ $key->NAMA_KONTAK }}</td>
+            <td>{{ $key->NOMOR_KONTAK }}</td>
+            <td><a href="{{ url('daftar-bmt/ubah/').'/'.$key->NIK_BMT }}" class="btn btn-sm btn-default" data-placement="top" data-toggle="tooltip" data-original-title="Ubah">Ubah</a></td>
           </tr>
-          @endfor
-
+          @endforeach
           </tbody>
         </table>
       </div>

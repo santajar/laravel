@@ -14,9 +14,13 @@
 Route::get('/', function(){
   return view('auth.login');
 });
+
 Route::get('/home', 'HomeController@home')->name('home');
-Route::get('daftar-bmt', 'HomeController@daftarBMT')->name('daftar.bmt');
-Route::get('daftar-bmt/tambah', 'HomeController@daftarBMTAdd')->name('daftar.bmtadd');
+Route::get('daftar-bmt', 'BMTController@daftarBMT')->name('daftar.bmt');
+Route::get('daftar-bmt/tambah', 'BMTController@daftarBMTAdd')->name('daftar.bmtadd');
+Route::post('daftar-bmt/tambah', 'BMTController@daftarBMTStore')->name('daftar.bmtpost');
+Route::get('daftar-bmt/ubah/{NIK_BMT}', 'BMTController@daftarBMTUbah')->name('daftar.bmtubah');
+Route::post('daftar-bmt/ubah', 'BMTController@daftarBMTEdit')->name('daftar.bmtedit');
 
 
 

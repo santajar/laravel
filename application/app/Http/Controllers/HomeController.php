@@ -13,13 +13,4 @@ class HomeController extends Controller
       return view('pages.home');
     }
 
-    public function daftarBMT()
-    {
-      return view('pages.transaksi.daftarBMT');
-    }
-
-    public function daftarBMTAdd()
-    {
-      return view('pages.transaksi.daftarBMTAdd');
-    }
 }

@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('title')
-  <title>Tambah BMT</title>
+  <title>Ubah Data BMT</title>
 @endsection
 
 @section('headscript')
@@ -11,7 +11,7 @@
 @section('content')
 <div class="page-title">
   <div class="title_left">
-    <h3> Tambah BMT <small> </small> </h3>
+    <h3> Ubah Data BMT <small> </small> </h3>
   </div>
 </div>
 <div class="clearfix"></div>
@@ -19,18 +19,25 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Tambah Data BMT </h2>
+        <h2>Ubah Data BMT </h2>
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
-        <form class="form-horizontal form-label-left" novalidate="" action="" method="post">
-
-          <div class="item form-group">
+        <form class="form-horizontal form-label-left" novalidate="" action="{{ route('daftar.bmtedit') }}" method="post">
+          {{ csrf_field()}}
+          <div class="item form-group {{ $errors->has('NIK_BMT') ? 'has-error' : '' }}">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">
               NO.INDUK BMT <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">
+              <input type="hidden" name="id" value="{{ $getData->id }}">
+              <input id="NIK_BMT" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" name="NIK_BMT" placeholder="No INDUK BMT" required="required" type="text" value="{{ $getData->NIK_BMT }}" readonly="">
+              @if($errors->has('NIK_BMT'))
+              <span class="help-block">
+                <strong>{{ $errors->first('NIK_BMT')}}
+                </strong>
+              </span>
+              @endif
             </div>
           </div>
           <div class="item form-group">
@@ -38,15 +45,15 @@
               NAMA BMT <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="nama_bmt" name="nama_bmt" data-validate-length-range="5,20" class="form-control col-md-7 col-xs-12" required="required" type="text">
+              <input id="NAMA_BMT" name="NAMA_BMT" data-validate-length-range="1,50" class="form-control col-md-7 col-xs-12" required="required" type="text" placeholder="NAMA BMT" value="{{ $getData->NAMA_BMT }}">
             </div>
           </div>
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">
-              ALAMAT <span class="required">*</span>
+              ALAMAT BMT <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <textarea id="textarea" required="required" name="textarea" class="form-control col-md-7 col-xs-12"></textarea>
+              <textarea id="ALAMAT_BMT" required="required" name="ALAMAT_BMT" class="form-control col-md-7 col-xs-12" placeholder="ALAMAT BMT">{{ $getData->ALAMAT_BMT }}</textarea>
             </div>
           </div>
           <div class="item form-group">
@@ -54,7 +61,7 @@
               NO.ANGGOTA BMT <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="occupation" name="occupation" data-validate-length-range="5,20" class="form-control col-md-7 col-xs-12" required="required" type="text">
+              <input id="NO_ANGGOTA_BMT" name="NO_ANGGOTA_BMT" data-validate-length-range="5,50" class="form-control col-md-7 col-xs-12" required="required" type="text" placeholder="NO. ANGGOTA BMT" value="{{ $getData->NO_ANGGOTA_BMT }}">
             </div>
           </div>
           <div class="item form-group">
@@ -62,7 +69,7 @@
               MPD  <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="occupation" name="occupation" data-validate-length-range="5,20" class="form-control col-md-7 col-xs-12" required="required" type="text">
+              <input id="MPD" name="MPD" data-validate-length-range="5,50" class="form-control col-md-7 col-xs-12" required="required" type="text" placeholder="MPD" value="{{ $getData->MPD }}">
             </div>
           </div>
           <div class="item form-group">
@@ -70,7 +77,7 @@
               MPW <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="occupation" name="occupation" data-validate-length-range="5,20" class="form-control col-md-7 col-xs-12" required="required" type="text">
+              <input id="MPW" name="MPW" data-validate-length-range="5,50" class="form-control col-md-7 col-xs-12" required="required" type="text" placeholder="MPW" value="{{ $getData->MPW }}">
             </div>
           </div>
           <div class="item form-group">
@@ -78,7 +85,7 @@
               NO.TELPON <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="occupation" name="occupation" data-validate-length-range="5,20" class="form-control col-md-7 col-xs-12" required="required" type="text">
+              <input id="NO_TELPON" name="NO_TELPON" data-validate-length-range="5,20" class="form-control col-md-7 col-xs-12" required="required" type="text" placeholder="NO. TELPON" value="{{ $getData->NO_TELPON }}">
             </div>
           </div>
           <div class="item form-group">
@@ -86,7 +93,7 @@
               NAMA KONTAK BMT <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="occupation" name="occupation" data-validate-length-range="5,20" class="form-control col-md-7 col-xs-12" required="required" type="text">
+              <input id="NAMA_KONTAK" name="NAMA_KONTAK" data-validate-length-range="1,70" class="form-control col-md-7 col-xs-12" required="required" type="text" placeholder="NAMA KONTAK BMT" value="{{ $getData->NAMA_KONTAK }}">
             </div>
           </div>
           <div class="item form-group">
@@ -94,11 +101,9 @@
               NO.KONTAK BMT <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="occupation" name="occupation" data-validate-length-range="5,20" class="form-control col-md-7 col-xs-12" required="required" type="text">
+              <input id="NOMOR_KONTAK" name="NOMOR_KONTAK" data-validate-length-range="5,20" class="form-control col-md-7 col-xs-12" required="required" type="text" placeholder="NOMOR KONTAK BMT" value="{{ $getData->NOMOR_KONTAK }}">
             </div>
           </div>
-
-
 
           <div class="ln_solid"></div>
           <div class="form-group">
